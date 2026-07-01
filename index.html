@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mere Sukoon ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Falling Petals Background */
+        #petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px 0 15px 0;
+            animation: fall linear infinite;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(0.5); opacity: 0; }
+        }
+
+        /* Envelope */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .envelope {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background: #e056fd;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 110px solid #ff758c;
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 5;
+        }
+
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .tap-text {
+            color: #d63031;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 6;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Glassmorphism Main Card */
+        .letter-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            padding: 40px 30px;
+            text-align: center;
+            display: none;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .letter-card.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Photo Stack */
+        .photo-stack {
+            position: relative;
+            height: 250px;
+            margin: 20px auto 40px auto;
+            width: 200px;
+        }
+
+        .polaroid {
+            position: absolute;
+            background: white;
+            padding: 10px 10px 25px 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 1px solid #eee;
+            width: 100%;
+            transition: transform 0.5s ease, z-index 0s;
+            cursor: pointer;
+        }
+
+        .p1 { transform: rotate(-10deg) translate(-20px, 10px); z-index: 1; }
+        .p2 { transform: rotate(5deg) translate(20px, -10px); z-index: 2; }
+        .p3 { transform: rotate(-2deg) translate(0, 0); z-index: 3; }
+
+        .photo-stack:hover .p1 { transform: rotate(-20deg) translate(-60px, 20px); }
+        .photo-stack:hover .p2 { transform: rotate(20deg) translate(60px, -20px); }
+        .photo-stack:hover .p3 { transform: rotate(0deg) translate(0, -10px) scale(1.1); }
+
+        .polaroid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63031;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Typewriter Text */
+        .letter-body {
+            font-size: 1.1rem;
+            color: #2d3436;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 30px;
+            min-height: 250px;
+            border-left: 4px solid #ff758c;
+            padding-left: 15px;
+            background: rgba(255, 117, 140, 0.05);
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #d63031;
+            text-align: right;
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #fff;
+            color: #ff758c;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #ff758c;
+            color: #fff;
+        }
+
+        .music-btn.playing {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            .letter-card { padding: 30px 20px; }
+            .photo-stack { width: 160px; height: 200px; }
+            .polaroid img { height: 140px; }
+            .letter-body { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="petals-container"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()" style="display:none;">🎵</button>
+
+    <div class="envelope-wrapper" id="envelope-wrapper" onclick="openLetter()">
+        <div class="envelope" id="envelope">
+            <div class="tap-text">Tap to open this Meri Jaan 💌</div>
+        </div>
+    </div>
+
+    <div class="letter-card" id="letter-card">
+        
+        <h1>Happy Birthday! 🎉</h1>
+
+        <div class="photo-stack">
+            <div class="polaroid p1"><img src="1000137368.jpg" alt="us"></div>
+            <div class="polaroid p2"><img src="1000137365.jpg" alt="us"></div>
+            <div class="polaroid p3"><img src="1000137373.jpg" alt="us"></div>
+        </div>
+
+        <div class="letter-body" id="typewriter-text"></div>
+
+        <div class="signature" id="signature" style="display:none;">
+            Hamesha Tumhara, <br>
+            [PRASHANT] ❤️
+        </div>
+    </div>
+
+    <script>
+        // Full LDR Message for Typewriter effect (REPLACE [MEGHA] with her actual name)
+        const message = `Dearest [MEGHA],
+
+Aaj tumhara birthday hai aur main tumse door hoon, par mera dil har pal tumhare hi paas rehta hai. 
+
+Pata hai? Jab bhi main aankhein band karta hoon, bas tumhara chehra nazar aata hai. Yeh screen ki doori kuch bhi nahi hai hamare pyaar ke aage. Tum meri zindagi ka sabse khoobsurat hissa ho. 
+
+Is naye saal me, meri yahi dua hai ki tumhare saare sapne poore hon aur tumhari pyari si muskurahat kabhi kam na ho. Bohot jald hum sath honge, bina kisi screen ke.
+
+Happiest Birthday my love! Miss you infinite. ❤️`;
+
+        let i = 0;
+        const speed = 40; // typing speed in milliseconds
+
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("typewriter-text").innerHTML += message.charAt(i) === '\n' ? '<br>' : message.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                document.getElementById("signature").style.display = "block";
+            }
+        }
+
+        // Falling Petals Animation
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const colors = ['#ff9a9e', '#fecfef', '#ffffff'];
+            
+            for (let i = 0; i < 40; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.width = (Math.random() * 15 + 10) + 'px';
+                petal.style.height = (Math.random() * 15 + 10) + 'px';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
+            }
+        }
+
+        let musicPlaying = false;
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        function toggleMusic() {
+            if(musicPlaying) {
+                music.pause();
+                musicBtn.classList.remove('playing');
+            } else {
+                music.play();
+                musicBtn.classList.add('playing');
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        function openLetter() {
+            const envelope = document.getElementById('envelope');
+            const envelopeWrapper = document.getElementById('envelope-wrapper');
+            const letterCard = document.getElementById('letter-card');
+
+            envelope.classList.add('open');
+            
+            setTimeout(() => {
+                envelopeWrapper.style.display = 'none';
+                letterCard.classList.add('show');
+                musicBtn.style.display = 'flex';
+                
+                // Start magic
+                createPetals();
+                setTimeout(typeWriter, 500); // Start typing after card shows
+                
+                // Auto play music 
+                toggleMusic(); 
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 800);
+        }
+    </script>
+</body>
+</html>
+<html>
+
+</html><html>
+
+</html><html>
+
+</html><html>
+
+</html><html>
+
+</html><head>
+
+</head><body>
+
+</body><title></title><meta charset="UTF-8"><link rel="stylesheet" href=""><script>
+
+</script><style>
+
+</style><html>
+
+</html>
